@@ -833,7 +833,7 @@ function renderChain(){
   CHAIN.forEach(([p, n], i) => {
     if (i){ const a = document.createElement("li"); a.className = "arrow"; a.textContent = "→"; a.setAttribute("aria-hidden","true"); ol.appendChild(a); }
     const li = document.createElement("li");
-    if (n === "jk1"){ li.className = "jk"; li.innerHTML = `<small>J${p}</small>`; li.append(T[lang].jk1); }
+    if (n === "jk1"){ li.className = "jk"; li.innerHTML = `<small>J${p}</small>`; li.append(T[lang].jk1 + (lang === "fr" ? " : " : ": ") + CHAIN[i-1][1]); }
     else { li.className = "p" + p; li.innerHTML = `<small>J${p}</small>`; li.append(n); }
     ol.appendChild(li);
   });
