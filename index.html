@@ -204,18 +204,27 @@ section{padding-block:88px;border-top:1px solid var(--line);scroll-margin-top:60
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chips button{font:17px/1 var(--display);text-transform:uppercase;letter-spacing:.03em;background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 14px;border-radius:999px;cursor:pointer}
 .chips button[aria-pressed="true"]{background:var(--ice);color:var(--ink);border-color:var(--ice)}
-.preview{--p1:#2ee6dc;--p2:#e14bd8;position:relative;border-radius:20px;background:#050914;border:1px solid var(--line);min-height:230px;display:grid;place-items:center;overflow:hidden;padding:20px;color:#e2e8f3}
-.pv{display:none;width:100%;text-align:center}
-.preview[data-style="texte"] .pv-texte,.preview[data-style="roue"] .pv-roue,.preview[data-style="casino"] .pv-casino,.preview[data-style="cartes"] .pv-cartes{display:block}
-.pv-name{font:clamp(30px,4vw,44px)/1 var(--display);text-transform:uppercase;color:var(--p1)}
-.pv-sub{font:700 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--p2);margin-bottom:12px}
-.wheel{width:150px;height:150px;margin:0 auto 14px;border-radius:50%;background:repeating-conic-gradient(var(--p1) 0 30deg,var(--p2) 30deg 60deg);border:4px solid #e2e8f3;position:relative;transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
-.wheel::after{content:"";position:absolute;inset:38%;border-radius:50%;background:#050914;border:3px solid #e2e8f3}
-.pin{width:0;height:0;margin:0 auto -4px;border-left:10px solid transparent;border-right:10px solid transparent;border-top:16px solid #e2e8f3;position:relative;z-index:1}
-.slot{max-width:280px;margin:0 auto;border:3px solid var(--p2);border-radius:14px;overflow:hidden;background:#0b1222}
-.slot div{font:22px/1 var(--display);text-transform:uppercase;padding:12px;color:#97a1b6;opacity:.6}
-.slot div.mid{color:#050a15;background:var(--p1);opacity:1;font-size:30px}
-.card{width:min(220px,100%);margin:0 auto;aspect-ratio:3/4;border-radius:16px;border:3px solid var(--p1);background:linear-gradient(160deg,#0e1528,#050914);display:grid;place-items:center;padding:16px;transform:rotate(-4deg);box-shadow:8px 8px 0 var(--p2)}
+.preview{--p1:#2ee6dc;--p2:#e14bd8;position:relative;border-radius:20px;background:#050914;border:1px solid var(--line);padding:14px;color:#e2e8f3}
+.pv-stage{height:170px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.pv-texte{font:clamp(30px,4vw,40px)/1 var(--display);text-transform:uppercase;text-align:center;color:#e2e8f3}
+.pv-texte.fini{color:var(--p1)}
+.pv-roue{position:relative;display:inline-flex;height:100%;align-items:center;justify-content:center}
+.pv-roue i{position:absolute;left:50%;top:0;z-index:1;transform:translateX(-50%);border-left:9px solid transparent;border-right:9px solid transparent;border-top:14px solid #e2e8f3}
+.pv-roue canvas{height:100%;width:auto;aspect-ratio:1;display:block}
+.pv-casino{position:relative;display:block;height:100%;width:100%;overflow:hidden}
+.pv-casino .reel{position:absolute;left:0;right:0;top:0;display:block;height:100%}
+.pv-casino .reel span{display:flex;height:33.333%;align-items:center;justify-content:center;padding:0 8px;font:clamp(16px,4.5vw,30px)/1 var(--display);text-transform:uppercase;color:#97a1b6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pv-casino .reel span.cible{color:var(--p1)}
+.pv-casino b{pointer-events:none;position:absolute;left:8px;right:8px;top:33.333%;height:33.333%;border-top:2px solid var(--p1);border-bottom:2px solid var(--p1)}
+.pv-cartes{position:relative;display:block;height:100%;width:100%}
+.carte{position:absolute;top:50%;left:50%;display:block;aspect-ratio:3/4;height:84%;perspective:600px}
+.carte > span{position:relative;display:block;height:100%;width:100%;transition:transform .5s;transform-style:preserve-3d}
+.carte.retournee > span{transform:rotateY(180deg) scale(1.08)}
+.carte .dos,.carte .face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:12px;backface-visibility:hidden;-webkit-backface-visibility:hidden;font-family:var(--display);text-transform:uppercase}
+.carte .dos{background:linear-gradient(135deg,var(--p1),var(--p2));color:#050a15;font-size:30px}
+.carte .dos::before{content:"";position:absolute;inset:6%;border-radius:8px;border:2px solid rgba(5,10,21,.35)}
+.carte .face{transform:rotateY(180deg);border:3px solid var(--p1);color:var(--p1);background:#0e1528;padding:4px;text-align:center;font-size:clamp(12px,3.2vw,20px);line-height:1.15}
+@keyframes gg-distribue{from{translate:160px -90px;rotate:40deg;opacity:0}to{translate:0 0;rotate:0deg;opacity:1}}
 .spin-btn{justify-self:start}
 @media (max-width:900px){.perso{grid-template-columns:1fr}}
 
@@ -449,7 +458,6 @@ a.social:hover{border-color:var(--pt);color:var(--pt)}
           <ul>
             <li><b data-i18n="jk1">Miroir</b><span data-i18n="jk1p">Reproduis le coup du joueur précédent</span></li>
             <li><b data-i18n="jk2">Change de sens</b><span data-i18n="jk2p">Vos roulettes s'échangent</span></li>
-            <li><b>Joker</b><span data-i18n="jk3p">Tu choisis librement ton coup</span></li>
           </ul>
         </div>
       </div>
@@ -510,17 +518,12 @@ a.social:hover{border-color:var(--pt);color:var(--pt)}
           <li class="glass"><span class="ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></span><div><h3 data-i18n="p1t">Choisis tes mouvements</h3><p data-i18n="p1p">Coche ceux qui entrent dans ta roulette, range-les, laisse de côté ceux que tu ne travailles pas aujourd'hui</p></div></li>
           <li class="glass"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><div><h3 data-i18n="p2t">Ajoute les tiens</h3><p data-i18n="p2p">Un mouvement de ton groupe, un toque, un chant : ajoute-le et il entre dans la roulette</p></div></li>
           <li class="glass"><span class="ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div><h3 data-i18n="p3t">Demande ce qui manque</h3><p data-i18n-html="p3p">Suggère un mouvement à l'admin depuis l'app, ou via le <a href="#contact">formulaire de contact</a> : l'app grandit avec ceux qui l'utilisent</p></div></li>
-          <li class="glass"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 0 0 0 20c1 0 1.5-.8 1.5-1.6 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.7-1.6 1.6-1.6H16a6 6 0 0 0 6-6c0-4.6-4.5-8.4-10-8.4z"/></svg></span><div><h3 data-i18n="p4t">Change de look</h3><p data-i18n="p4p">7 thèmes de couleurs, 4 styles de roulette et plusieurs sons de bip. Essaie juste à côté</p></div></li>
+          <li class="glass"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 0 0 0 20c1 0 1.5-.8 1.5-1.6 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.7-1.6 1.6-1.6H16a6 6 0 0 0 6-6c0-4.6-4.5-8.4-10-8.4z"/></svg></span><div><h3 data-i18n="p4t">Change de look</h3><p data-i18n="p4p">7 thèmes de couleurs, 4 styles de roulette et 13 sons. Essaie juste à côté</p></div></li>
         </ul>
         <div class="studio glass">
           <div><span class="tag" data-i18n="st_colors">Thème de couleurs</span><div class="swatches" id="swatches"></div></div>
           <div><span class="tag" data-i18n="st_style">Style de roulette</span><div class="chips" id="styles"></div></div>
-          <div class="preview" id="preview" data-style="texte">
-            <div class="pv pv-texte"><div class="pv-sub" data-i18n="pv_sub">Ta roulette</div><div class="pv-name" id="pv1">Armada</div></div>
-            <div class="pv pv-roue"><div class="pin"></div><div class="wheel" id="wheel"></div><div class="pv-name" id="pv2">Armada</div></div>
-            <div class="pv pv-casino"><div class="slot"><div id="pv3a">Martelo</div><div class="mid" id="pv3">Armada</div><div id="pv3b">Negativa</div></div></div>
-            <div class="pv pv-cartes"><div class="card"><div class="pv-name" id="pv4">Armada</div></div></div>
-          </div>
+          <div class="preview" id="preview"><div class="pv-stage" id="pv-stage" aria-hidden="true"></div></div>
           <button class="btn btn-c spin-btn" id="pv-spin" type="button" data-i18n="pv_spin">Tourner</button>
         </div>
       </div>
@@ -666,7 +669,7 @@ const STORY = {
 };
 
 const T = {
-  fr:{contact_link:"Contact",k_contact:"Contact",contact_title:"Une idée, <span class=\"c\">un mouvement qui manque ?</span>",contact_intro:"Une suggestion, un bug, une question : écris-moi, je lis tout et je réponds",f_name:"Prénom",f_email:"E-mail, pour te répondre",f_topic:"Sujet",o1:"Suggérer un mouvement",o2:"Une idée pour l'app",o3:"Signaler un bug",o4:"Autre",f_msg:"Message",f_send:"Envoyer",f_sending:"Envoi…",f_ok:"Merci, ton message est bien parti",f_err:"L'envoi n'a pas marché. Réessaie dans un instant",f_missing:"Indique ton e-mail et ton message",k_vid:"En vidéo",vid_title:"GingaGo <span class=\"v\">en action</span>",vid_intro:"Les reels publiés sur Instagram et YouTube, en FR, EN et PT",pv_spin:"Tourner",pv_sub:"Ta roulette",st_style:"Style de roulette",st_colors:"Thème de couleurs",p4p:"7 thèmes de couleurs, 4 styles de roulette et plusieurs sons de bip. Essaie juste à côté",p4t:"Change de look",p3p:"Suggère un mouvement à l'admin depuis l'app, ou via le <a href=\"#contact\">formulaire de contact</a> : l'app grandit avec ceux qui l'utilisent",p3t:"Demande ce qui manque",p2p:"Un mouvement de ton groupe, un toque, un chant : ajoute-le et il entre dans la roulette",p2t:"Ajoute les tiens",p1p:"Coche ceux qui entrent dans ta roulette, range-les, laisse de côté ceux que tu ne travailles pas aujourd'hui",p1t:"Choisis tes mouvements",perso_intro:"Tu décides de ce qui entre dans la roulette, de l'allure de l'app et de ce qu'il faudrait y ajouter",perso_title:"Ton outil, <span class=\"v\">à ta façon</span>",k_perso:"Personnalisation",pl2:"Joueur·se 2",pl1:"Joueur·se 1",strip_t:"Exemple de séquence entremêlée",jk3p:"Tu choisis librement ton coup",jk2p:"Vos roulettes s'échangent",jk2:"Change de sens",jk1p:"Reproduis le coup du joueur précédent",jk1:"Miroir",s_jk:"Cartes joker",s_duo_p:"Chaque joueur·se a sa propre roulette. Vous tournez chacun votre tour et vos coups s'entremêlent dans une seule séquence, comme une conversation",s_duo:"Duo",s_solo_p:"Tu remplis ta roulette avec tes mouvements, tu tournes, et les coups s'enchaînent dans l'ordre pour former ta séquence",s_solo:"Solo",seq_intro:"Chaque tour de roulette ajoute un mouvement à ta séquence. Même côté ou sens opposé, pied posé ou non : c'est toi qui inventes l'enchaînement, et aucune séquence ne ressemble à la précédente",seq_title:"Des séquences <span class=\"c\">que tu n'aurais jamais jouées</span>",k_seq:"Séquences",nav_perso:"Personnalisation",nav_seq:"Séquences",nav_tools:"Outils",nav_moves:"Mouvements",nav_music:"Musique",nav_story:"Histoire",nav_cta:"Télécharger",
+  fr:{contact_link:"Contact",k_contact:"Contact",contact_title:"Une idée, <span class=\"c\">un mouvement qui manque ?</span>",contact_intro:"Une suggestion, un bug, une question : écris-moi, je lis tout et je réponds",f_name:"Prénom",f_email:"E-mail, pour te répondre",f_topic:"Sujet",o1:"Suggérer un mouvement",o2:"Une idée pour l'app",o3:"Signaler un bug",o4:"Autre",f_msg:"Message",f_send:"Envoyer",f_sending:"Envoi…",f_ok:"Merci, ton message est bien parti",f_err:"L'envoi n'a pas marché. Réessaie dans un instant",f_missing:"Indique ton e-mail et ton message",k_vid:"En vidéo",vid_title:"GingaGo <span class=\"v\">en action</span>",vid_intro:"Les reels publiés sur Instagram et YouTube, en FR, EN et PT",pv_spin:"Tourner",st_style:"Style de roulette",st_colors:"Thème de couleurs",p4p:"7 thèmes de couleurs, 4 styles de roulette et 13 sons. Essaie juste à côté",p4t:"Change de look",p3p:"Suggère un mouvement à l'admin depuis l'app, ou via le <a href=\"#contact\">formulaire de contact</a> : l'app grandit avec ceux qui l'utilisent",p3t:"Demande ce qui manque",p2p:"Un mouvement de ton groupe, un toque, un chant : ajoute-le et il entre dans la roulette",p2t:"Ajoute les tiens",p1p:"Coche ceux qui entrent dans ta roulette, range-les, laisse de côté ceux que tu ne travailles pas aujourd'hui",p1t:"Choisis tes mouvements",perso_intro:"Tu décides de ce qui entre dans la roulette, de l'allure de l'app et de ce qu'il faudrait y ajouter",perso_title:"Ton outil, <span class=\"v\">à ta façon</span>",k_perso:"Personnalisation",pl2:"Joueur·se 2",pl1:"Joueur·se 1",strip_t:"Exemple de séquence entremêlée",jk2p:"Vos roulettes s'échangent",jk2:"Change de sens",jk1p:"Reproduis le coup du joueur précédent",jk1:"Miroir",s_jk:"Cartes joker",s_duo_p:"Chaque joueur·se a sa propre roulette. Vous tournez chacun votre tour et vos coups s'entremêlent dans une seule séquence, comme une conversation",s_duo:"Duo",s_solo_p:"Tu remplis ta roulette avec tes mouvements, tu tournes, et les coups s'enchaînent dans l'ordre pour former ta séquence",s_solo:"Solo",seq_intro:"Chaque tour de roulette ajoute un mouvement à ta séquence. Même côté ou sens opposé, pied posé ou non : c'est toi qui inventes l'enchaînement, et aucune séquence ne ressemble à la précédente",seq_title:"Des séquences <span class=\"c\">que tu n'aurais jamais jouées</span>",k_seq:"Séquences",nav_perso:"Personnalisation",nav_seq:"Séquences",nav_tools:"Outils",nav_moves:"Mouvements",nav_music:"Musique",nav_story:"Histoire",nav_cta:"Télécharger",
     lead:"Laisse le hasard <strong>bousculer ta capoeira</strong>",
     cta_store:"Sur l'App Store",cta_tour:"Découvrir l'app",note:"iPhone · Android bientôt sur Google Play · FR · EN · PT",
     draw_head:"Séquences · tirage",sound:"Son",roll:"Tirer 3 mouvements",joker:"Carte joker",
@@ -685,7 +688,7 @@ const T = {
     copy:"Copier",copied:"Copié",privacy:"Politique de confidentialité",
     stn:{texte:"Texte",roue:"Roue",casino:"Casino",cartes:"Cartes"},
     cat:{kicks:"Coup de pied",dodges:"Esquive",desequilibrantes:"Déséquilibrante",acrobatics:"Acrobatie"}},
-  en:{contact_link:"Contact",k_contact:"Contact",contact_title:"An idea, <span class=\"c\">a missing move?</span>",contact_intro:"A suggestion, a bug, a question: write to me, I read everything and reply",f_name:"First name",f_email:"Email, so I can reply",f_topic:"Topic",o1:"Suggest a move",o2:"An idea for the app",o3:"Report a bug",o4:"Other",f_msg:"Message",f_send:"Send",f_sending:"Sending…",f_ok:"Thanks, your message has been sent",f_err:"Sending failed. Try again in a moment",f_missing:"Add your email and your message",k_vid:"Video",vid_title:"GingaGo <span class=\"v\">in action</span>",vid_intro:"The reels posted on Instagram and YouTube, in FR, EN and PT",pv_spin:"Spin",pv_sub:"Your wheel",st_style:"Wheel style",st_colors:"Colour theme",p4p:"7 colour themes, 4 wheel styles and several beep sounds. Try them right here",p4t:"Change the look",p3p:"Suggest a move to the admin from the app, or use the <a href=\"#contact\">contact form</a>: the app grows with the people who use it",p3t:"Ask for what's missing",p2p:"A move from your group, a toque, a song: add it and it joins the wheel",p2t:"Add your own",p1p:"Tick the ones that go into your wheel, reorder them, leave out the ones you're not working on today",p1t:"Pick your moves",perso_intro:"You decide what goes into the wheel, how the app looks and what should be added next",perso_title:"Your tool, <span class=\"v\">your way</span>",k_perso:"Customize",pl2:"Player 2",pl1:"Player 1",strip_t:"Example of an interwoven sequence",jk3p:"Pick any move you like",jk2p:"Your wheels swap",jk2:"Switch direction",jk1p:"Copy the previous player's move",jk1:"Mirror",s_jk:"Joker cards",s_duo_p:"Each player has their own wheel. You take turns and your moves interweave into a single sequence, like a conversation",s_duo:"Duo",s_solo_p:"Fill your wheel with your moves, spin, and the moves line up in order to build your sequence",s_solo:"Solo",seq_intro:"Every spin adds a move to your sequence. Same side or opposite, foot down or not: you invent the transitions, and no sequence looks like the last one",seq_title:"Sequences <span class=\"c\">you would never have played</span>",k_seq:"Sequences",nav_perso:"Customize",nav_seq:"Sequences",nav_tools:"Tools",nav_moves:"Moves",nav_music:"Music",nav_story:"Story",nav_cta:"Download",
+  en:{contact_link:"Contact",k_contact:"Contact",contact_title:"An idea, <span class=\"c\">a missing move?</span>",contact_intro:"A suggestion, a bug, a question: write to me, I read everything and reply",f_name:"First name",f_email:"Email, so I can reply",f_topic:"Topic",o1:"Suggest a move",o2:"An idea for the app",o3:"Report a bug",o4:"Other",f_msg:"Message",f_send:"Send",f_sending:"Sending…",f_ok:"Thanks, your message has been sent",f_err:"Sending failed. Try again in a moment",f_missing:"Add your email and your message",k_vid:"Video",vid_title:"GingaGo <span class=\"v\">in action</span>",vid_intro:"The reels posted on Instagram and YouTube, in FR, EN and PT",pv_spin:"Spin",st_style:"Wheel style",st_colors:"Colour theme",p4p:"7 colour themes, 4 wheel styles and 13 sounds. Try them right here",p4t:"Change the look",p3p:"Suggest a move to the admin from the app, or use the <a href=\"#contact\">contact form</a>: the app grows with the people who use it",p3t:"Ask for what's missing",p2p:"A move from your group, a toque, a song: add it and it joins the wheel",p2t:"Add your own",p1p:"Tick the ones that go into your wheel, reorder them, leave out the ones you're not working on today",p1t:"Pick your moves",perso_intro:"You decide what goes into the wheel, how the app looks and what should be added next",perso_title:"Your tool, <span class=\"v\">your way</span>",k_perso:"Customize",pl2:"Player 2",pl1:"Player 1",strip_t:"Example of an interwoven sequence",jk2p:"Your wheels swap",jk2:"Switch direction",jk1p:"Copy the previous player's move",jk1:"Mirror",s_jk:"Joker cards",s_duo_p:"Each player has their own wheel. You take turns and your moves interweave into a single sequence, like a conversation",s_duo:"Duo",s_solo_p:"Fill your wheel with your moves, spin, and the moves line up in order to build your sequence",s_solo:"Solo",seq_intro:"Every spin adds a move to your sequence. Same side or opposite, foot down or not: you invent the transitions, and no sequence looks like the last one",seq_title:"Sequences <span class=\"c\">you would never have played</span>",k_seq:"Sequences",nav_perso:"Customize",nav_seq:"Sequences",nav_tools:"Tools",nav_moves:"Moves",nav_music:"Music",nav_story:"Story",nav_cta:"Download",
     lead:"Let chance <strong>shake up your capoeira</strong>",
     cta_store:"On the App Store",cta_tour:"Explore the app",note:"iPhone · Android coming soon on Google Play · FR · EN · PT",
     draw_head:"Sequences · draw",sound:"Sound",roll:"Draw 3 moves",joker:"Joker card",
@@ -704,7 +707,7 @@ const T = {
     copy:"Copy",copied:"Copied",privacy:"Privacy policy",
     stn:{texte:"Text",roue:"Wheel",casino:"Casino",cartes:"Cards"},
     cat:{kicks:"Kick",dodges:"Escape",desequilibrantes:"Takedown",acrobatics:"Acrobatics"}},
-  pt:{contact_link:"Contato",k_contact:"Contato",contact_title:"Uma ideia, <span class=\"c\">um movimento faltando?</span>",contact_intro:"Uma sugestão, um bug, uma pergunta: escreva, eu leio tudo e respondo",f_name:"Nome",f_email:"E-mail, para eu responder",f_topic:"Assunto",o1:"Sugerir um movimento",o2:"Uma ideia para o app",o3:"Relatar um bug",o4:"Outro",f_msg:"Mensagem",f_send:"Enviar",f_sending:"Enviando…",f_ok:"Obrigada, sua mensagem foi enviada",f_err:"O envio falhou. Tente de novo em instantes",f_missing:"Informe seu e-mail e sua mensagem",k_vid:"Vídeo",vid_title:"GingaGo <span class=\"v\">em ação</span>",vid_intro:"Os reels publicados no Instagram e no YouTube, em FR, EN e PT",pv_spin:"Girar",pv_sub:"Sua roleta",st_style:"Estilo da roleta",st_colors:"Tema de cores",p4p:"7 temas de cores, 4 estilos de roleta e vários sons de bipe. Experimente aqui ao lado",p4t:"Mude o visual",p3p:"Sugira um movimento ao admin pelo app, ou use o <a href=\"#contact\">formulário de contato</a>: o app cresce com quem usa",p3t:"Peça o que falta",p2p:"Um movimento do seu grupo, um toque, uma cantiga: adicione e ele entra na roleta",p2t:"Adicione os seus",p1p:"Marque os que entram na sua roleta, organize, deixe de lado os que você não treina hoje",p1t:"Escolha seus movimentos",perso_intro:"Você decide o que entra na roleta, a cara do app e o que ainda falta",perso_title:"Sua ferramenta, <span class=\"v\">do seu jeito</span>",k_perso:"Personalização",pl2:"Jogador·a 2",pl1:"Jogador·a 1",strip_t:"Exemplo de sequência entrelaçada",jk3p:"Você escolhe livremente seu golpe",jk2p:"As roletas se trocam",jk2:"Muda de lado",jk1p:"Repita o golpe do jogador anterior",jk1:"Espelho",s_jk:"Cartas coringa",s_duo_p:"Cada jogador tem sua própria roleta. Vocês giram um de cada vez e os golpes se entrelaçam numa só sequência, como uma conversa",s_duo:"Dupla",s_solo_p:"Você monta sua roleta com seus movimentos, gira, e os golpes se encadeiam em ordem para formar sua sequência",s_solo:"Solo",seq_intro:"Cada giro da roleta acrescenta um movimento à sua sequência. Mesmo lado ou lado oposto, pé no chão ou não: é você quem inventa a ligação, e nenhuma sequência se parece com a anterior",seq_title:"Sequências <span class=\"c\">que você nunca teria jogado</span>",k_seq:"Sequências",nav_perso:"Personalizar",nav_seq:"Sequências",nav_tools:"Ferramentas",nav_moves:"Movimentos",nav_music:"Música",nav_story:"História",nav_cta:"Baixar",
+  pt:{contact_link:"Contato",k_contact:"Contato",contact_title:"Uma ideia, <span class=\"c\">um movimento faltando?</span>",contact_intro:"Uma sugestão, um bug, uma pergunta: escreva, eu leio tudo e respondo",f_name:"Nome",f_email:"E-mail, para eu responder",f_topic:"Assunto",o1:"Sugerir um movimento",o2:"Uma ideia para o app",o3:"Relatar um bug",o4:"Outro",f_msg:"Mensagem",f_send:"Enviar",f_sending:"Enviando…",f_ok:"Obrigada, sua mensagem foi enviada",f_err:"O envio falhou. Tente de novo em instantes",f_missing:"Informe seu e-mail e sua mensagem",k_vid:"Vídeo",vid_title:"GingaGo <span class=\"v\">em ação</span>",vid_intro:"Os reels publicados no Instagram e no YouTube, em FR, EN e PT",pv_spin:"Girar",st_style:"Estilo da roleta",st_colors:"Tema de cores",p4p:"7 temas de cores, 4 estilos de roleta e 13 sons. Experimente aqui ao lado",p4t:"Mude o visual",p3p:"Sugira um movimento ao admin pelo app, ou use o <a href=\"#contact\">formulário de contato</a>: o app cresce com quem usa",p3t:"Peça o que falta",p2p:"Um movimento do seu grupo, um toque, uma cantiga: adicione e ele entra na roleta",p2t:"Adicione os seus",p1p:"Marque os que entram na sua roleta, organize, deixe de lado os que você não treina hoje",p1t:"Escolha seus movimentos",perso_intro:"Você decide o que entra na roleta, a cara do app e o que ainda falta",perso_title:"Sua ferramenta, <span class=\"v\">do seu jeito</span>",k_perso:"Personalização",pl2:"Jogador·a 2",pl1:"Jogador·a 1",strip_t:"Exemplo de sequência entrelaçada",jk2p:"As roletas se trocam",jk2:"Muda de lado",jk1p:"Repita o golpe do jogador anterior",jk1:"Espelho",s_jk:"Cartas coringa",s_duo_p:"Cada jogador tem sua própria roleta. Vocês giram um de cada vez e os golpes se entrelaçam numa só sequência, como uma conversa",s_duo:"Dupla",s_solo_p:"Você monta sua roleta com seus movimentos, gira, e os golpes se encadeiam em ordem para formar sua sequência",s_solo:"Solo",seq_intro:"Cada giro da roleta acrescenta um movimento à sua sequência. Mesmo lado ou lado oposto, pé no chão ou não: é você quem inventa a ligação, e nenhuma sequência se parece com a anterior",seq_title:"Sequências <span class=\"c\">que você nunca teria jogado</span>",k_seq:"Sequências",nav_perso:"Personalizar",nav_seq:"Sequências",nav_tools:"Ferramentas",nav_moves:"Movimentos",nav_music:"Música",nav_story:"História",nav_cta:"Baixar",
     lead:"Deixe o acaso <strong>sacudir a sua capoeira</strong>",
     cta_store:"Na App Store",cta_tour:"Conhecer o app",note:"iPhone · Android em breve no Google Play · FR · EN · PT",
     draw_head:"Sequências · sorteio",sound:"Som",roll:"Sortear 3 movimentos",joker:"Carta coringa",
@@ -714,7 +717,7 @@ const T = {
     t3:"Música",t3d:"Cantigas · instrumentos · toques",t3h:"Gire as roletas, depois cante e toque o que o acaso decidir para você",
     t4:"Prenda",t4d:"Movimento · repetições ou tempo",t4h:"Não seguiu as regras? Agora assume 😈",
     t5:"Pedagogia",t5d:"Livretos · fichas · FR · EN · PT",t5h:"Enriqueça seus conhecimentos: cantigas, história, personagens, cultura",
-    t6:"Treino solo",t6d:"Intervalado · capoeira · música · pedagogia",t6h:"Um percurso guiado passo a passo, gerado ao acaso",
+    t6:"Treino solo",t6d:"Fracionado · capoeira · música · pedagogia",t6h:"Um percurso guiado passo a passo, gerado ao acaso",
     k_moves:"44 movimentos animados",moves_title:"Cada movimento, <span class=\"v\">em movimento</span>",moves_intro:"Chutes, esquivas, desequilibrantes, acrobacias: cada movimento tem sua animação, para conferir um gesto num piscar de olhos",
     k_music:"Música",music_title:"A música também <span class=\"c\">vai pra roleta</span>",music_intro:"Cantiga ou instrumento, depois o estilo: a roleta decide, você canta ou toca. Cada toque tem sua ficha com a notação",
     roul_title:"Roleta dos toques",roul_idle:"Deixe o acaso escolher",roul_btn:"Girar",music_note:"TCH, DOM, DIM: a notação de cada toque, como nas fichas do app",
@@ -840,7 +843,68 @@ function renderChain(){
 }
 
 /* --- personnalisation --- */
-let pal = 0, sty = "texte", wheelTurn = 0;
+let pal = 0, sty = "texte", pvTimers = [], pvRaf = 0;
+/* Aperçu repris de l'app : mêmes exemples, mêmes animations (texte, roue, casino, cartes) */
+const EXEMPLES = ["Ginga","Armada","Meia lua de frente","Queixada","Martelo","Esquiva","Rolê","Aù","Bênção","Negativa","Gancho","Chapa"];
+const court = t => { const m = t.toUpperCase().split(" ").slice(0,2).join(" "); return m.length > 14 ? m.slice(0,13) + "…" : m; };
+function runPreview(){
+  pvTimers.forEach(clearTimeout); pvTimers = []; cancelAnimationFrame(pvRaf);
+  const stage = $("pv-stage"); stage.innerHTML = "";
+  const cible = EXEMPLES[Math.floor(Math.random()*EXEMPLES.length)], duree = 2200;
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cs = getComputedStyle($("preview")), c1 = cs.getPropertyValue("--p1").trim(), c2 = cs.getPropertyValue("--p2").trim();
+  if (sty === "texte" || still){
+    const el = document.createElement("span"); el.className = "pv-texte"; stage.appendChild(el);
+    if (still){ el.textContent = cible; el.classList.add("fini"); return; }
+    const t0 = performance.now(); let delai = 60; el.textContent = EXEMPLES[0];
+    const tick = () => {
+      if (performance.now() - t0 > duree){ el.textContent = cible; el.classList.add("fini"); return; }
+      el.textContent = EXEMPLES[Math.floor(Math.random()*EXEMPLES.length)];
+      delai *= 1.1; pvTimers.push(setTimeout(tick, delai));
+    };
+    pvTimers.push(setTimeout(tick, delai));
+  } else if (sty === "roue"){
+    const box = document.createElement("span"); box.className = "pv-roue"; box.innerHTML = '<i></i><canvas width="320" height="320"></canvas>'; stage.appendChild(box);
+    const cv = box.querySelector("canvas"), cx = cv.getContext("2d");
+    const liste = EXEMPLES.filter(x => x !== cible); liste.splice(Math.floor(Math.random()*(liste.length+1)), 0, cible);
+    const n = liste.length, k = liste.indexOf(cible), S = cv.width, R = S/2 - 4;
+    const fin = -Math.PI/2 - ((k + .5) * 2 * Math.PI) / n - 2 * Math.PI * 5, t0 = performance.now();
+    const dessine = ang => {
+      cx.clearRect(0,0,S,S); cx.save(); cx.translate(S/2,S/2); cx.rotate(ang);
+      for (let i=0;i<n;i++){
+        cx.beginPath(); cx.moveTo(0,0); cx.arc(0,0,R,(i*2*Math.PI)/n,((i+1)*2*Math.PI)/n); cx.fillStyle = i % 2 ? c2 : c1; cx.fill();
+        cx.save(); cx.rotate(((i+.5)*2*Math.PI)/n); cx.fillStyle = "#0B1020"; cx.font = Math.round(S/(n>10?20:16)) + "px Anton, Impact, sans-serif";
+        cx.textAlign = "right"; cx.textBaseline = "middle"; cx.fillText(court(liste[i]), R-8, 0); cx.restore();
+      }
+      cx.restore(); cx.beginPath(); cx.arc(S/2,S/2,S/18,0,7); cx.fillStyle = "#050a15"; cx.fill();
+    };
+    const pas = now => { const u = Math.min(1,(now-t0)/duree), e = 1 - Math.pow(1-u,3); dessine(fin*e); if (u < 1) pvRaf = requestAnimationFrame(pas); };
+    pvRaf = requestAnimationFrame(pas);
+  } else if (sty === "casino"){
+    const liste = []; for (let i=0;i<22;i++) liste.push(EXEMPLES[Math.floor(Math.random()*EXEMPLES.length)]);
+    liste.push(cible, EXEMPLES[Math.floor(Math.random()*EXEMPLES.length)]);
+    const box = document.createElement("span"); box.className = "pv-casino";
+    const reel = document.createElement("span"); reel.className = "reel";
+    liste.forEach((m,i) => { const sp = document.createElement("span"); sp.textContent = m; if (i === liste.length-2) sp.className = "cible"; reel.appendChild(sp); });
+    reel.style.transform = "translateY(33.333%)"; reel.style.transition = `transform ${duree}ms cubic-bezier(.15,.85,.25,1)`;
+    box.appendChild(reel); box.appendChild(document.createElement("b")); stage.appendChild(box);
+    pvRaf = requestAnimationFrame(() => requestAnimationFrame(() => { reel.style.transform = `translateY(calc(${-(liste.length-2)} * 33.333% + 33.333%))`; }));
+  } else {
+    const box = document.createElement("span"); box.className = "pv-cartes"; stage.appendChild(box);
+    let delai = 70, ecoule = 0;
+    const pose = () => {
+      const rot = Math.random()*16 - 8, d = Math.min(260, delai*2.2);
+      const c = document.createElement("span"); c.className = "carte";
+      c.style.transform = `translate(-50%, -50%) rotate(${rot}deg)`; c.style.animation = `gg-distribue ${d}ms cubic-bezier(.2,.8,.3,1) both`;
+      c.innerHTML = '<span><span class="dos">?</span><span class="face"></span></span>'; c.querySelector(".face").textContent = cible;
+      box.appendChild(c); while (box.children.length > 6) box.firstChild.remove();
+      ecoule += delai;
+      if (ecoule < duree - 700){ delai *= 1.15; pvTimers.push(setTimeout(pose, delai)); }
+      else pvTimers.push(setTimeout(() => c.classList.add("retournee"), 320));
+    };
+    pose();
+  }
+}
 function buildStudio(){
   PALETTES.forEach(([nom, a, b], i) => {
     const btn = document.createElement("button"); btn.type = "button"; btn.className = "sw";
@@ -849,7 +913,7 @@ function buildStudio(){
     btn.setAttribute("aria-pressed", i === pal);
     btn.addEventListener("click", () => {
       pal = i; document.querySelectorAll(".sw").forEach((x,k) => x.setAttribute("aria-pressed", k === i));
-      $("preview").style.setProperty("--p1", a); $("preview").style.setProperty("--p2", b);
+      $("preview").style.setProperty("--p1", a); $("preview").style.setProperty("--p2", b); runPreview();
     });
     $("swatches").appendChild(btn);
   });
@@ -859,21 +923,11 @@ function renderStyles(){
   STYLES.forEach(id => {
     const b = document.createElement("button"); b.type = "button"; b.textContent = T[lang].stn[id];
     b.setAttribute("aria-pressed", id === sty);
-    b.addEventListener("click", () => { sty = id; $("preview").dataset.style = id; renderStyles(); });
+    b.addEventListener("click", () => { sty = id; renderStyles(); runPreview(); });
     box.appendChild(b);
   });
 }
-$("pv-spin").addEventListener("click", () => {
-  const pick3 = pick(3).map(m => m.n);
-  let n = 0;
-  wheelTurn += 720 + Math.floor(Math.random()*360); $("wheel").style.transform = `rotate(${wheelTurn}deg)`;
-  const t = setInterval(() => {
-    const r = pick(3).map(m => m.n);
-    ["pv1","pv2","pv3","pv4"].forEach(id => $(id).textContent = r[0]);
-    $("pv3a").textContent = r[1]; $("pv3b").textContent = r[2];
-    if (++n > 10){ clearInterval(t); ["pv1","pv2","pv3","pv4"].forEach(id => $(id).textContent = pick3[0]); $("pv3a").textContent = pick3[1]; $("pv3b").textContent = pick3[2]; }
-  }, 90);
-});
+$("pv-spin").addEventListener("click", runPreview);
 
 /* --- langue --- */
 function setLang(l){
@@ -935,7 +989,7 @@ $("theme").addEventListener("click", () => {
 })();
 
 /* --- départ --- */
-buildGallery(); buildStudio(); renderToques();
+buildGallery(); buildStudio(); renderToques(); runPreview();
 let start = "";
 try { start = localStorage.getItem("gingago-lang") || ""; } catch(e) {}
 if (!start){ const n = (navigator.language || "fr").slice(0,2); start = n === "pt" ? "pt" : n === "en" ? "en" : "fr"; }
