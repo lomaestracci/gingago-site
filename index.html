@@ -219,6 +219,20 @@ section{padding-block:88px;border-top:1px solid var(--line);scroll-margin-top:60
 .spin-btn{justify-self:start}
 @media (max-width:900px){.perso{grid-template-columns:1fr}}
 
+/* vidéos */
+.phone{width:min(230px,100%);aspect-ratio:var(--ar);border-radius:30px;border:6px solid #1b2338;background:#050914;overflow:hidden;box-shadow:var(--shadow);margin:0 auto;flex:none}
+.phone video{width:100%;height:100%;object-fit:cover;display:block}
+.seq-card .phone{margin-bottom:8px}
+.perso.with-phone{grid-template-columns:230px 1fr 1fr}
+@media (max-width:1100px){.perso.with-phone{grid-template-columns:1fr 1fr}.perso.with-phone > .phone{grid-column:1 / -1}}
+@media (max-width:900px){.perso.with-phone{grid-template-columns:1fr}}
+.music-left{display:grid;gap:16px;justify-items:center}
+.music-left .roulette{width:100%}
+.reels{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px}
+.reels .phone{width:100%;max-width:230px}
+.reel-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+@media (max-width:900px){.reels{grid-template-columns:repeat(2,1fr)}}
+
 /* outils */
 .tools{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px}
 .tool{padding:22px;display:flex;flex-direction:column;gap:6px;min-width:0;transition:transform .2s, border-color .2s}
@@ -410,10 +424,12 @@ a.social:hover{border-color:var(--pt);color:var(--pt)}
       <p class="sec-intro" data-i18n="seq_intro">Chaque tour de roulette ajoute un mouvement à ta séquence. Même côté ou sens opposé, pied posé ou non : c'est toi qui inventes l'enchaînement, et aucune séquence ne ressemble à la précédente</p>
       <div class="seq-grid">
         <div class="seq-card glass">
+          <div class="phone" style="--ar:480/1040"><video class="lazyv" muted loop playsinline preload="none" poster="assets/video/solo.jpg" data-src="assets/video/solo.mp4" aria-label="Solo"></video></div>
           <h3 class="c" data-i18n="s_solo">Solo</h3>
           <p data-i18n="s_solo_p">Tu remplis ta roulette avec tes mouvements, tu tournes, et les coups s'enchaînent dans l'ordre pour former ta séquence</p>
         </div>
         <div class="seq-card glass">
+          <div class="phone" style="--ar:480/1040"><video class="lazyv" muted loop playsinline preload="none" poster="assets/video/duo.jpg" data-src="assets/video/duo.mp4" aria-label="Duo"></video></div>
           <h3 class="v" data-i18n="s_duo">Duo</h3>
           <p data-i18n="s_duo_p">Chaque joueur·se a sa propre roulette. Vous tournez chacun votre tour et vos coups s'entremêlent dans une seule séquence, comme une conversation</p>
         </div>
@@ -441,7 +457,8 @@ a.social:hover{border-color:var(--pt);color:var(--pt)}
       <div class="kicker" data-i18n="k_perso">Personnalisation</div>
       <h2 class="sec-title" data-i18n-html="perso_title">Ton outil, <span class="v">à ta façon</span></h2>
       <p class="sec-intro" data-i18n="perso_intro">Tu décides de ce qui entre dans la roulette, de l'allure de l'app et de ce qu'il faudrait y ajouter</p>
-      <div class="perso">
+      <div class="perso with-phone">
+        <div class="phone" style="--ar:480/1040"><video class="lazyv" muted loop playsinline preload="none" poster="assets/video/choix.jpg" data-src="assets/video/choix.mp4" aria-label="Choix des mouvements"></video></div>
         <ul class="perso-list">
           <li class="glass"><span class="ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></span><div><h3 data-i18n="p1t">Choisis tes mouvements</h3><p data-i18n="p1p">Coche ceux qui entrent dans ta roulette, range-les, laisse de côté ceux que tu ne travailles pas aujourd'hui</p></div></li>
           <li class="glass"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><div><h3 data-i18n="p2t">Ajoute les tiens</h3><p data-i18n="p2p">Un mouvement de ton groupe, un toque, un chant : ajoute-le et il entre dans la roulette</p></div></li>
@@ -494,7 +511,8 @@ a.social:hover{border-color:var(--pt);color:var(--pt)}
       <h2 class="sec-title" data-i18n-html="music_title">Joue la roda, <span class="c">même seul·e</span></h2>
       <p class="sec-intro" data-i18n="music_intro">Les toques de berimbau, d'atabaque et de pandeiro, à écouter et à lire. Dans l'app, chaque fiche renvoie aussi vers des écoutes Spotify et YouTube</p>
       <div class="music">
-        <div>
+        <div class="music-left">
+          <div class="phone" style="--ar:480/1040"><video class="lazyv" muted loop playsinline preload="none" poster="assets/video/musique.jpg" data-src="assets/video/musique.mp4" aria-label="Roulettes musique"></video></div>
           <div class="roulette glass" style="margin-top:0">
             <div class="tag" data-i18n="roul_title">Roulette des toques</div>
             <div class="roulette-out" id="roul-out" data-i18n="roul_idle">Laisse le hasard choisir</div>
@@ -523,6 +541,19 @@ a.social:hover{border-color:var(--pt);color:var(--pt)}
       <div>
         <div class="story-text" id="story"></div>
         <p class="sign">Laurence Maestracci — Prof. est. Pavão</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="videos">
+    <div class="wrap">
+      <div class="kicker" data-i18n="k_vid">En vidéo</div>
+      <h2 class="sec-title" data-i18n-html="vid_title">GingaGo <span class="v">en action</span></h2>
+      <p class="sec-intro" data-i18n="vid_intro">Les reels publiés sur Instagram et YouTube, en FR, EN et PT</p>
+      <div class="reels"><div class="phone" style="--ar:480/854"><video class="lazyv" muted loop playsinline preload="none" poster="assets/video/reel-personnaliser.jpg" data-src="assets/video/reel-personnaliser.mp4" aria-label="Reel GingaGo"></video></div><div class="phone" style="--ar:480/854"><video class="lazyv" muted loop playsinline preload="none" poster="assets/video/reel-favoris-partage.jpg" data-src="assets/video/reel-favoris-partage.mp4" aria-label="Reel GingaGo"></video></div><div class="phone" style="--ar:480/854"><video class="lazyv" muted loop playsinline preload="none" poster="assets/video/reel-progression.jpg" data-src="assets/video/reel-progression.mp4" aria-label="Reel GingaGo"></video></div><div class="phone" style="--ar:480/854"><video class="lazyv" muted loop playsinline preload="none" poster="assets/video/reel-lancement-appstore.jpg" data-src="assets/video/reel-lancement-appstore.mp4" aria-label="Reel GingaGo"></video></div></div>
+      <div class="reel-links">
+        <a class="btn btn-ghost" href="https://www.instagram.com/gingago.app/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-ghost" href="https://www.youtube.com/@GingaGo-app" target="_blank" rel="noopener">YouTube</a>
       </div>
     </div>
   </section>
@@ -612,7 +643,7 @@ const STORY = {
 };
 
 const T = {
-  fr:{pv_spin:"Tourner",pv_sub:"Ta roulette",st_style:"Style de roulette",st_colors:"Thème de couleurs",p4p:"7 thèmes de couleurs, 4 styles de roulette et plusieurs sons de bip. Essaie juste à côté",p4t:"Change de look",p3p:"Suggère un mouvement à l'admin depuis l'app, ou écris à <b>gingago.app@gmail.com</b> : l'app grandit avec ceux qui l'utilisent",p3t:"Demande ce qui manque",p2p:"Un mouvement de ton groupe, un toque, un chant : ajoute-le et il entre dans la roulette",p2t:"Ajoute les tiens",p1p:"Coche ceux qui entrent dans ta roulette, range-les, laisse de côté ceux que tu ne travailles pas aujourd'hui",p1t:"Choisis tes mouvements",perso_intro:"Tu décides de ce qui entre dans la roulette, de l'allure de l'app et de ce qu'il faudrait y ajouter",perso_title:"Ton outil, <span class=\"v\">à ta façon</span>",k_perso:"Personnalisation",pl2:"Joueur·se 2",pl1:"Joueur·se 1",strip_t:"Exemple de séquence entremêlée",jk3p:"Tu choisis librement ton coup",jk2p:"Vos roulettes s'échangent",jk2:"Change de sens",jk1p:"Reproduis le coup du joueur précédent",jk1:"Miroir",s_jk:"Cartes joker",s_duo_p:"Chaque joueur·se a sa propre roulette. Vous tournez chacun votre tour et vos coups s'entremêlent dans une seule séquence, comme une conversation",s_duo:"Duo",s_solo_p:"Tu remplis ta roulette avec tes mouvements, tu tournes, et les coups s'enchaînent dans l'ordre pour former ta séquence",s_solo:"Solo",seq_intro:"Chaque tour de roulette ajoute un mouvement à ta séquence. Même côté ou sens opposé, pied posé ou non : c'est toi qui inventes l'enchaînement, et aucune séquence ne ressemble à la précédente",seq_title:"Le hasard tire, <span class=\"c\">tu crées</span>",k_seq:"Séquences",nav_perso:"Personnalisation",nav_seq:"Séquences",nav_tools:"Outils",nav_moves:"Mouvements",nav_music:"Musique",nav_story:"Histoire",nav_cta:"Télécharger",
+  fr:{k_vid:"En vidéo",vid_title:"GingaGo <span class=\"v\">en action</span>",vid_intro:"Les reels publiés sur Instagram et YouTube, en FR, EN et PT",pv_spin:"Tourner",pv_sub:"Ta roulette",st_style:"Style de roulette",st_colors:"Thème de couleurs",p4p:"7 thèmes de couleurs, 4 styles de roulette et plusieurs sons de bip. Essaie juste à côté",p4t:"Change de look",p3p:"Suggère un mouvement à l'admin depuis l'app, ou écris à <b>gingago.app@gmail.com</b> : l'app grandit avec ceux qui l'utilisent",p3t:"Demande ce qui manque",p2p:"Un mouvement de ton groupe, un toque, un chant : ajoute-le et il entre dans la roulette",p2t:"Ajoute les tiens",p1p:"Coche ceux qui entrent dans ta roulette, range-les, laisse de côté ceux que tu ne travailles pas aujourd'hui",p1t:"Choisis tes mouvements",perso_intro:"Tu décides de ce qui entre dans la roulette, de l'allure de l'app et de ce qu'il faudrait y ajouter",perso_title:"Ton outil, <span class=\"v\">à ta façon</span>",k_perso:"Personnalisation",pl2:"Joueur·se 2",pl1:"Joueur·se 1",strip_t:"Exemple de séquence entremêlée",jk3p:"Tu choisis librement ton coup",jk2p:"Vos roulettes s'échangent",jk2:"Change de sens",jk1p:"Reproduis le coup du joueur précédent",jk1:"Miroir",s_jk:"Cartes joker",s_duo_p:"Chaque joueur·se a sa propre roulette. Vous tournez chacun votre tour et vos coups s'entremêlent dans une seule séquence, comme une conversation",s_duo:"Duo",s_solo_p:"Tu remplis ta roulette avec tes mouvements, tu tournes, et les coups s'enchaînent dans l'ordre pour former ta séquence",s_solo:"Solo",seq_intro:"Chaque tour de roulette ajoute un mouvement à ta séquence. Même côté ou sens opposé, pied posé ou non : c'est toi qui inventes l'enchaînement, et aucune séquence ne ressemble à la précédente",seq_title:"Le hasard tire, <span class=\"c\">tu crées</span>",k_seq:"Séquences",nav_perso:"Personnalisation",nav_seq:"Séquences",nav_tools:"Outils",nav_moves:"Mouvements",nav_music:"Musique",nav_story:"Histoire",nav_cta:"Télécharger",
     lead:"Tu choisis tes mouvements, la roulette les tire au hasard, <strong>et c'est toi qui crées ta séquence</strong>",
     cta_store:"Sur l'App Store",cta_tour:"Découvrir l'app",note:"iPhone · Android bientôt sur Google Play · FR · EN · PT",
     draw_head:"Séquences · tirage",sound:"Son",roll:"Tirer 3 mouvements",joker:"Carte joker",
@@ -631,7 +662,7 @@ const T = {
     copy:"Copier",copied:"Copié",privacy:"Politique de confidentialité",
     stn:{texte:"Texte",roue:"Roue",casino:"Casino",cartes:"Cartes"},
     cat:{kicks:"Coup de pied",dodges:"Esquive",desequilibrantes:"Déséquilibrante",acrobatics:"Acrobatie"}},
-  en:{pv_spin:"Spin",pv_sub:"Your wheel",st_style:"Wheel style",st_colors:"Colour theme",p4p:"7 colour themes, 4 wheel styles and several beep sounds. Try them right here",p4t:"Change the look",p3p:"Suggest a move to the admin from the app, or write to <b>gingago.app@gmail.com</b>: the app grows with the people who use it",p3t:"Ask for what's missing",p2p:"A move from your group, a toque, a song: add it and it joins the wheel",p2t:"Add your own",p1p:"Tick the ones that go into your wheel, reorder them, leave out the ones you're not working on today",p1t:"Pick your moves",perso_intro:"You decide what goes into the wheel, how the app looks and what should be added next",perso_title:"Your tool, <span class=\"v\">your way</span>",k_perso:"Customize",pl2:"Player 2",pl1:"Player 1",strip_t:"Example of an interwoven sequence",jk3p:"Pick any move you like",jk2p:"Your wheels swap",jk2:"Switch direction",jk1p:"Copy the previous player's move",jk1:"Mirror",s_jk:"Joker cards",s_duo_p:"Each player has their own wheel. You take turns and your moves interweave into a single sequence, like a conversation",s_duo:"Duo",s_solo_p:"Fill your wheel with your moves, spin, and the moves line up in order to build your sequence",s_solo:"Solo",seq_intro:"Every spin adds a move to your sequence. Same side or opposite, foot down or not: you invent the transitions, and no sequence looks like the last one",seq_title:"Chance draws, <span class=\"c\">you create</span>",k_seq:"Sequences",nav_perso:"Customize",nav_seq:"Sequences",nav_tools:"Tools",nav_moves:"Moves",nav_music:"Music",nav_story:"Story",nav_cta:"Download",
+  en:{k_vid:"Video",vid_title:"GingaGo <span class=\"v\">in action</span>",vid_intro:"The reels posted on Instagram and YouTube, in FR, EN and PT",pv_spin:"Spin",pv_sub:"Your wheel",st_style:"Wheel style",st_colors:"Colour theme",p4p:"7 colour themes, 4 wheel styles and several beep sounds. Try them right here",p4t:"Change the look",p3p:"Suggest a move to the admin from the app, or write to <b>gingago.app@gmail.com</b>: the app grows with the people who use it",p3t:"Ask for what's missing",p2p:"A move from your group, a toque, a song: add it and it joins the wheel",p2t:"Add your own",p1p:"Tick the ones that go into your wheel, reorder them, leave out the ones you're not working on today",p1t:"Pick your moves",perso_intro:"You decide what goes into the wheel, how the app looks and what should be added next",perso_title:"Your tool, <span class=\"v\">your way</span>",k_perso:"Customize",pl2:"Player 2",pl1:"Player 1",strip_t:"Example of an interwoven sequence",jk3p:"Pick any move you like",jk2p:"Your wheels swap",jk2:"Switch direction",jk1p:"Copy the previous player's move",jk1:"Mirror",s_jk:"Joker cards",s_duo_p:"Each player has their own wheel. You take turns and your moves interweave into a single sequence, like a conversation",s_duo:"Duo",s_solo_p:"Fill your wheel with your moves, spin, and the moves line up in order to build your sequence",s_solo:"Solo",seq_intro:"Every spin adds a move to your sequence. Same side or opposite, foot down or not: you invent the transitions, and no sequence looks like the last one",seq_title:"Chance draws, <span class=\"c\">you create</span>",k_seq:"Sequences",nav_perso:"Customize",nav_seq:"Sequences",nav_tools:"Tools",nav_moves:"Moves",nav_music:"Music",nav_story:"Story",nav_cta:"Download",
     lead:"You pick your moves, the wheel draws them at random, <strong>and you create your own sequence</strong>",
     cta_store:"On the App Store",cta_tour:"Explore the app",note:"iPhone · Android coming soon on Google Play · FR · EN · PT",
     draw_head:"Sequences · draw",sound:"Sound",roll:"Draw 3 moves",joker:"Joker card",
@@ -650,7 +681,7 @@ const T = {
     copy:"Copy",copied:"Copied",privacy:"Privacy policy",
     stn:{texte:"Text",roue:"Wheel",casino:"Casino",cartes:"Cards"},
     cat:{kicks:"Kick",dodges:"Escape",desequilibrantes:"Takedown",acrobatics:"Acrobatics"}},
-  pt:{pv_spin:"Girar",pv_sub:"Sua roleta",st_style:"Estilo da roleta",st_colors:"Tema de cores",p4p:"7 temas de cores, 4 estilos de roleta e vários sons de bipe. Experimente aqui ao lado",p4t:"Mude o visual",p3p:"Sugira um movimento ao admin pelo app, ou escreva para <b>gingago.app@gmail.com</b>: o app cresce com quem usa",p3t:"Peça o que falta",p2p:"Um movimento do seu grupo, um toque, uma cantiga: adicione e ele entra na roleta",p2t:"Adicione os seus",p1p:"Marque os que entram na sua roleta, organize, deixe de lado os que você não treina hoje",p1t:"Escolha seus movimentos",perso_intro:"Você decide o que entra na roleta, a cara do app e o que ainda falta",perso_title:"Sua ferramenta, <span class=\"v\">do seu jeito</span>",k_perso:"Personalização",pl2:"Jogador·a 2",pl1:"Jogador·a 1",strip_t:"Exemplo de sequência entrelaçada",jk3p:"Você escolhe livremente seu golpe",jk2p:"As roletas se trocam",jk2:"Muda de lado",jk1p:"Repita o golpe do jogador anterior",jk1:"Espelho",s_jk:"Cartas coringa",s_duo_p:"Cada jogador tem sua própria roleta. Vocês giram um de cada vez e os golpes se entrelaçam numa só sequência, como uma conversa",s_duo:"Dupla",s_solo_p:"Você monta sua roleta com seus movimentos, gira, e os golpes se encadeiam em ordem para formar sua sequência",s_solo:"Solo",seq_intro:"Cada giro da roleta acrescenta um movimento à sua sequência. Mesmo lado ou lado oposto, pé no chão ou não: é você quem inventa a ligação, e nenhuma sequência se parece com a anterior",seq_title:"O acaso sorteia, <span class=\"c\">você cria</span>",k_seq:"Sequências",nav_perso:"Personalizar",nav_seq:"Sequências",nav_tools:"Ferramentas",nav_moves:"Movimentos",nav_music:"Música",nav_story:"História",nav_cta:"Baixar",
+  pt:{k_vid:"Vídeo",vid_title:"GingaGo <span class=\"v\">em ação</span>",vid_intro:"Os reels publicados no Instagram e no YouTube, em FR, EN e PT",pv_spin:"Girar",pv_sub:"Sua roleta",st_style:"Estilo da roleta",st_colors:"Tema de cores",p4p:"7 temas de cores, 4 estilos de roleta e vários sons de bipe. Experimente aqui ao lado",p4t:"Mude o visual",p3p:"Sugira um movimento ao admin pelo app, ou escreva para <b>gingago.app@gmail.com</b>: o app cresce com quem usa",p3t:"Peça o que falta",p2p:"Um movimento do seu grupo, um toque, uma cantiga: adicione e ele entra na roleta",p2t:"Adicione os seus",p1p:"Marque os que entram na sua roleta, organize, deixe de lado os que você não treina hoje",p1t:"Escolha seus movimentos",perso_intro:"Você decide o que entra na roleta, a cara do app e o que ainda falta",perso_title:"Sua ferramenta, <span class=\"v\">do seu jeito</span>",k_perso:"Personalização",pl2:"Jogador·a 2",pl1:"Jogador·a 1",strip_t:"Exemplo de sequência entrelaçada",jk3p:"Você escolhe livremente seu golpe",jk2p:"As roletas se trocam",jk2:"Muda de lado",jk1p:"Repita o golpe do jogador anterior",jk1:"Espelho",s_jk:"Cartas coringa",s_duo_p:"Cada jogador tem sua própria roleta. Vocês giram um de cada vez e os golpes se entrelaçam numa só sequência, como uma conversa",s_duo:"Dupla",s_solo_p:"Você monta sua roleta com seus movimentos, gira, e os golpes se encadeiam em ordem para formar sua sequência",s_solo:"Solo",seq_intro:"Cada giro da roleta acrescenta um movimento à sua sequência. Mesmo lado ou lado oposto, pé no chão ou não: é você quem inventa a ligação, e nenhuma sequência se parece com a anterior",seq_title:"O acaso sorteia, <span class=\"c\">você cria</span>",k_seq:"Sequências",nav_perso:"Personalizar",nav_seq:"Sequências",nav_tools:"Ferramentas",nav_moves:"Movimentos",nav_music:"Música",nav_story:"História",nav_cta:"Baixar",
     lead:"Você escolhe seus movimentos, a roleta sorteia, <strong>e é você quem cria a sua sequência</strong>",
     cta_store:"Na App Store",cta_tour:"Conhecer o app",note:"iPhone · Android em breve no Google Play · FR · EN · PT",
     draw_head:"Sequências · sorteio",sound:"Som",roll:"Sortear 3 movimentos",joker:"Carta coringa",
@@ -864,6 +895,20 @@ $("theme").addEventListener("click", () => {
   r.dataset.theme = next;
   try { localStorage.setItem("gingago-theme", next); } catch(e) {}
 });
+
+/* --- vidéos : lecture seulement quand visibles --- */
+(function(){
+  const vids = document.querySelectorAll("video.lazyv");
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const load = v => { if (!v.src) v.src = v.dataset.src; };
+  if (still){ vids.forEach(v => { v.controls = true; v.preload = "none"; v.addEventListener("play", () => load(v), {once:true}); }); return; }
+  if (!("IntersectionObserver" in window)){ vids.forEach(v => { load(v); v.play().catch(()=>{}); }); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting){ load(v); v.play().catch(()=>{}); } else v.pause();
+  }), { rootMargin: "200px" });
+  vids.forEach(v => io.observe(v));
+})();
 
 /* --- départ --- */
 current = [{n:"Armada",cat:"kicks"},{n:"Negativa",cat:"dodges"},{n:"Aú",cat:"acrobatics"}];
