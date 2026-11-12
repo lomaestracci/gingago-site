@@ -111,7 +111,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   radial-gradient(40% 50% at 18% 30%, rgba(141,77,255,.22), transparent 70%),
   radial-gradient(40% 55% at 85% 55%, rgba(46,230,220,.14), transparent 70%),
   radial-gradient(30% 40% at 60% 0%, rgba(225,75,216,.14), transparent 70%)}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center}
 .hero-logo{width:clamp(130px,16vw,190px);height:auto;animation:logo-spin .9s ease-out 1 both;filter:drop-shadow(0 10px 40px rgba(141,77,255,.35))}
 @keyframes logo-spin{0%{transform:rotate(-200deg) scale(.6);opacity:.3}60%{opacity:1}100%{transform:none}}
 .slogan{font-size:clamp(56px, 8.4vw, 116px);line-height:.92;margin-top:18px}
@@ -409,26 +409,6 @@ a.social:hover{border-color:var(--pt);color:var(--pt)}
         <p class="note" data-i18n="note">iPhone · Android bientôt sur Google Play · FR · EN · PT</p>
       </div>
 
-      <div class="draw glass" aria-live="polite">
-        <div class="draw-head">
-          <span class="tag"><span data-i18n="draw_head">Séquences · tirage</span> <b id="roll-count">#1</b></span>
-          <button class="sound" id="sound" type="button" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path id="wave" style="display:none" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
-            <span data-i18n="sound">Son</span>
-          </button>
-        </div>
-        <div class="draw-body">
-          <div class="stage">
-            <video id="stage-video" muted loop playsinline autoplay preload="auto" src="assets/anim/armada.mp4"></video>
-            <div class="cap" id="stage-cap">Armada</div>
-          </div>
-          <ol class="moves" id="moves"></ol>
-        </div>
-        <button class="btn btn-c roll" id="roll" type="button">
-          <span class="die" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-          <span data-i18n="roll">Tirer 3 mouvements</span>
-        </button>
-      </div>
     </div>
   </div>
 
@@ -786,17 +766,6 @@ function renderMoves(animate){
   document.querySelectorAll(".move").forEach((b,k) => b.setAttribute("aria-current", k===active));
   $("roll-count").textContent = "#" + rolls;
 }
-$("roll").addEventListener("click", e => {
-  current = pick(3); currentJoker = Math.random() < .25 ? Math.floor(Math.random()*2) : null; rolls++;
-  const b = e.currentTarget; b.classList.remove("spin"); void b.offsetWidth; b.classList.add("spin");
-  renderMoves(true); showMove(0, true);
-});
-$("sound").addEventListener("click", e => {
-  soundOn = !soundOn; e.currentTarget.setAttribute("aria-pressed", soundOn);
-  $("wave").style.display = soundOn ? "" : "none";
-  if (!soundOn){ if (voice) voice.pause(); stopMusic(); }
-});
-
 /* --- galerie --- */
 function buildGallery(){
   const g = $("anims");
@@ -914,7 +883,6 @@ function setLang(l){
   document.querySelectorAll("[data-i18n-html]").forEach(el => { const v = T[lang][el.dataset.i18nHtml]; if (v) el.innerHTML = v; });
   document.querySelectorAll(".langs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
   $("story").innerHTML = ""; STORY[lang].forEach(t => { const p = document.createElement("p"); p.textContent = t; $("story").appendChild(p); });
-  renderMoves(false);
   renderChain(); renderStyles();
   try { localStorage.setItem("gingago-lang", lang); } catch(e) {}
 }
@@ -967,7 +935,6 @@ $("theme").addEventListener("click", () => {
 })();
 
 /* --- départ --- */
-current = [{n:"Armada",cat:"kicks"},{n:"Negativa",cat:"dodges"},{n:"Aú",cat:"acrobatics"}];
 buildGallery(); buildStudio(); renderToques();
 let start = "";
 try { start = localStorage.getItem("gingago-lang") || ""; } catch(e) {}
